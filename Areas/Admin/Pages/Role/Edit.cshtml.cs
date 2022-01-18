@@ -8,15 +8,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using RazorEF.Models;
+using App.Models;
 
-namespace RazorEF.Areas.Admin.Pages.Role
+namespace App.Areas.Admin.Pages.Role
 {
     [Authorize(Policy = "AllowEditRole")] // 20.2 Use AllowEditRole policy
     // User must login and have Role that contains "canedit:post" or "canedit:user" claims
     public class EditModel : RolePageModel
     {
-        public EditModel(RoleManager<IdentityRole> roleManger, MyBlogContext context) : base(roleManger, context)
+        public EditModel(RoleManager<IdentityRole> roleManger, AppDbContext context) : base(roleManger, context)
         {
         }
 

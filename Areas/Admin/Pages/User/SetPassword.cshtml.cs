@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RazorEF.Models;
+using App.Models;
 
-namespace RazorEF.Areas.Admin.Pages.User
+namespace App.Areas.Admin.Pages.User
 {
     public class SetPasswordModel : PageModel
     {

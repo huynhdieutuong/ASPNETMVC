@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using RazorEF.Models;
+using App.Models;
 
-namespace RazorEF.Areas.Admin.Pages.User
+namespace App.Areas.Admin.Pages.User
 {
     [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel

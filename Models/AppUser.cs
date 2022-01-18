@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
-namespace RazorEF.Models
+namespace App.Models
 {
     // 2. Create AppUser Model has Users's Columns: UserName, Email, PasswordHash,...
     public class AppUser : IdentityUser

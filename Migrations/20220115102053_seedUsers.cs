@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace RazorEF.Migrations
+namespace App.Migrations
 {
     public partial class seedUsers : Migration
     {

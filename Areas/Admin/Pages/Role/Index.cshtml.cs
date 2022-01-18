@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using RazorEF.Models;
+using App.Models;
 
-namespace RazorEF.Areas.Admin.Pages.Role
+namespace App.Areas.Admin.Pages.Role
 {
     [Authorize(Roles = "Admin")] // "Admin,Vip,Editor" => Admin || Vip || Editor
     // [Authorize(Roles = "Vip")]
@@ -27,7 +27,7 @@ namespace RazorEF.Areas.Admin.Pages.Role
     */
     public class IndexModel : RolePageModel
     {
-        public IndexModel(RoleManager<IdentityRole> roleManger, MyBlogContext context) : base(roleManger, context)
+        public IndexModel(RoleManager<IdentityRole> roleManger, AppDbContext context) : base(roleManger, context)
         {
         }
 

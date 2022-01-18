@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 
-namespace RazorEF.Security.Requirements
+namespace App.Security.Requirements
 {
     // 24.3 Create ArticleUpdateRequirement
     public class ArticleUpdateRequirement : IAuthorizationRequirement

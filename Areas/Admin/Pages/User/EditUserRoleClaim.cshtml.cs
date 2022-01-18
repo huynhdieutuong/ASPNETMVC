@@ -9,16 +9,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using RazorEF.Models;
+using App.Models;
 
-namespace RazorEF.Areas.Admin.Pages.User
+namespace App.Areas.Admin.Pages.User
 {
     public class EditUserRoleClaimModel : PageModel
     {
-        private readonly MyBlogContext _context;
+        private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
 
-        public EditUserRoleClaimModel(MyBlogContext context, UserManager<AppUser> userManager)
+        public EditUserRoleClaimModel(AppDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
             _userManager = userManager;

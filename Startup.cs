@@ -17,10 +17,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RazorEF.Models;
-using RazorEF.Security.Requirements;
+using App.Models;
+using App.Security.Requirements;
 
-namespace RazorEF
+namespace App
 {
     public class Startup
     {
@@ -35,7 +35,7 @@ namespace RazorEF
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddDbContext<MyBlogContext>(options =>
+            services.AddDbContext<AppDbContext>(options =>
             {
                 string connectString = Configuration.GetConnectionString("MyBlogContext");
                 options.UseSqlServer(connectString);
@@ -49,7 +49,7 @@ namespace RazorEF
 
             // 4. Register Identity
             services.AddIdentity<AppUser, IdentityRole>()
-                    .AddEntityFrameworkStores<MyBlogContext>()
+                    .AddEntityFrameworkStores<AppDbContext>()
                     .AddDefaultTokenProviders();
 
             // 8.1 Use AddDefaultIdentity for Identity UI Default

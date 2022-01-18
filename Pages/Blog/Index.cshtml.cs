@@ -6,17 +6,17 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using RazorEF.Models;
+using App.Models;
 
-namespace RazorEF.Pages_Blog
+namespace App.Pages_Blog
 {
     // 10.1 If not login, prevent access Blog
     [Authorize]
     public class IndexModel : PageModel
     {
-        private readonly RazorEF.Models.MyBlogContext _context;
+        private readonly App.Models.AppDbContext _context;
 
-        public IndexModel(RazorEF.Models.MyBlogContext context)
+        public IndexModel(App.Models.AppDbContext context)
         {
             _context = context;
         }

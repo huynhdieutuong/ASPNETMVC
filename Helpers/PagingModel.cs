@@ -1,6 +1,6 @@
 using System;
 
-namespace RazorEF.Helpers
+namespace App.Helpers
 {
     public class PagingModel
     {

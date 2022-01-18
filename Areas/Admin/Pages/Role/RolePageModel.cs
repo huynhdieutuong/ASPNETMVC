@@ -1,16 +1,16 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RazorEF.Models;
+using App.Models;
 
-namespace RazorEF.Areas.Admin.Pages.Role
+namespace App.Areas.Admin.Pages.Role
 {
     public class RolePageModel : PageModel
     {
         protected readonly RoleManager<IdentityRole> _roleManager;
-        protected readonly MyBlogContext _context;
+        protected readonly AppDbContext _context;
 
-        public RolePageModel(RoleManager<IdentityRole> roleManger, MyBlogContext context)
+        public RolePageModel(RoleManager<IdentityRole> roleManger, AppDbContext context)
         {
             _roleManager = roleManger;
             _context = context;

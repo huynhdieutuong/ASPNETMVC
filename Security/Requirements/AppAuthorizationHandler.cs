@@ -6,9 +6,9 @@ using App.Security.Requirements;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using RazorEF.Models;
+using App.Models;
 
-namespace RazorEF.Security.Requirements
+namespace App.Security.Requirements
 {
     // 22.4 Create AppAuthorizationHandler
     public class AppAuthorizationHandler : IAuthorizationHandler

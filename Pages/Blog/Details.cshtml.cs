@@ -6,17 +6,17 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using RazorEF.Models;
+using App.Models;
 
-namespace RazorEF.Pages_Blog
+namespace App.Pages_Blog
 {
     // 22.1 Use Policy InGenZ
     [Authorize(Policy = "InGenZ")] // Date of Birth 1997 - 2012
     public class DetailsModel : PageModel
     {
-        private readonly RazorEF.Models.MyBlogContext _context;
+        private readonly App.Models.AppDbContext _context;
 
-        public DetailsModel(RazorEF.Models.MyBlogContext context)
+        public DetailsModel(App.Models.AppDbContext context)
         {
             _context = context;
         }

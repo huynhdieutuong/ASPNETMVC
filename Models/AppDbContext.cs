@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace RazorEF.Models
+namespace App.Models
 {
     // 3. Extends IdentityDbContext to use Tables: Roles, RoleClaims, Users, UserClaims,...
-    public class MyBlogContext : IdentityDbContext<AppUser>
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
-        public MyBlogContext(DbContextOptions<MyBlogContext> options) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }
