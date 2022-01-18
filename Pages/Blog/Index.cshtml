@@ -1,0 +1,64 @@
+@page
+@model RazorEF.Pages_Blog.IndexModel
+@using RazorEF.Helpers
+
+@{
+    ViewData["Title"] = "Articles";
+    string searchText = ViewData["searchText"] as string;
+    int i = 0;
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New</a>
+    <form asp-page="Index" method="get">
+        <div class="input-group">
+            <input type="text" class="form-control" name="searchText" value="@searchText" placeholder="Input text to search title" aria-label="Input text to search title" aria-describedby="btnGroupAddon2">
+            <div class="input-group-prepend">
+                <button type="submit" class="input-group-text" id="btnGroupAddon2">Search</button>
+            </div>
+        </div>
+    </form>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].Created)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Article) {
+        <tr>
+            <td>@(++i)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@{
+    var pagingModel = new PagingModel() {
+        CurrentPage = @Model.CurrentPage,
+        CountPages = @Model.CountPages,
+        GenerateUrl = (int? page) => Url.Page("/Blog/Index", new { p = page })
+    };
+}
+<partial name="_Paging" model="@pagingModel" /> 

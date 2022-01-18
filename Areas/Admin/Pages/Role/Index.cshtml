@@ -1,0 +1,36 @@
+﻿@page "/admin/roles"
+@model RazorEF.Areas.Admin.Pages.Role.IndexModel
+@{
+  ViewData["Title"] = "Roles list";
+}
+<h2>@ViewData["Title"]</h2>
+
+<partial name="_StatusMessage" model="@Model.StatusMessage"></partial>
+
+<div class="mb-2">
+  <a class="btn btn-secondary" asp-page="./Create">Create</a>
+  <a class="btn btn-primary" asp-page="../User/Index">Users list</a>
+</div>
+
+<table class="table">
+  <tr>
+    <th>Role Name</th>
+    <th>Actions</th>
+  </tr>
+  @foreach (var role in Model.Roles)
+  {
+    <tr>
+      <td>
+        <p>@role.Name</p>
+        @foreach (var claim in role.Claims)
+        {
+          <small>@claim</small><br>
+        }
+      </td>
+      <td>
+        <a class="btn btn-success btn-sm" asp-page="./Edit" asp-route-roleId="@role.Id">Edit</a>
+        <a class="btn btn-success btn-sm" asp-page="./Delete" asp-route-roleId="@role.Id">Delete</a>
+      </td>
+    </tr>
+  }
+</table>

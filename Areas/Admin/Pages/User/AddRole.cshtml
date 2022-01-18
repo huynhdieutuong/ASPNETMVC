@@ -1,0 +1,64 @@
+﻿@page "/admin/update-role/{userId}"
+@model AddRoleModel
+@{
+    ViewData["Title"] = "Update role";
+}
+
+<h4>Update role for user: @Model.User.UserName</h4>
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="row">
+    <div class="col-md-6">
+        <form id="update-role-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoleNames"></label>
+                @* 18.2 Show list Roles *@
+                @Html.ListBoxFor(model => model.RoleNames, Model.AllRoles, new {
+                    id = "id-select-roles",
+                    @class = "w-100"
+                })
+                <span asp-validation-for="RoleNames" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a asp-page="./Index" class="btn btn-primary">Users list</a>
+        </form>
+        <hr>
+        <p>Claims from Role:</p>
+        @if (Model.ClaimsInRoleClaims.Count > 0) {
+            <ul>
+                @foreach (var claim in Model.ClaimsInRoleClaims)
+                {
+                    <li>@claim.ClaimType : @claim.ClaimValue</li>
+                }
+            </ul>
+        }
+        <p>
+            Claims from direct User:
+            <a asp-page="./EditUserRoleClaim" asp-page-handler="AddClaim" asp-route-userId="@Model.User.Id">Add user claim</a>
+        </p>
+        @if (Model.ClaimsInUserClaims.Count > 0) {
+            <ul>
+                @foreach (var claim in Model.ClaimsInUserClaims)
+                {
+                    <li><a asp-page="./EditUserRoleClaim" asp-page-handler="EditClaim" asp-route-claimId="@claim.Id">@claim.ClaimType : @claim.ClaimValue</a></li>
+                }
+            </ul>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/multiple-select/multiple-select.min.js"></script>
+    <link rel="stylesheet" href="~/lib/multiple-select/multiple-select.min.css" />
+
+    <script>
+        $("#id-select-roles").multipleSelect({
+            selectAll: false,
+            keepOpen: false,
+            isOpen: false
+        })
+    </script>
+
+    <partial name="_ValidationScriptsPartial" />
+}

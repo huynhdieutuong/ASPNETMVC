@@ -1,0 +1,47 @@
+﻿@page "/admin/users"
+@using RazorEF.Helpers
+@model RazorEF.Areas.Admin.Pages.User.IndexModel
+@{
+  ViewData["Title"] = "Users list";
+  string searchText = ViewData["searchText"] as string;
+}
+<h2>@ViewData["Title"]</h2>
+<p>Total users: @Model.TotalUsers</p>
+<form asp-page="Index" method="get">
+  <div class="input-group">
+    <input type="text" class="form-control" name="searchText" value="@searchText" placeholder="Input text to search user name" aria-label="Input text to search user name" aria-describedby="btnGroupAddon2">
+    <div class="input-group-prepend">
+      <button type="submit" class="input-group-text" id="btnGroupAddon2">Search</button>
+    </div>
+  </div>
+</form>
+
+<partial name="_StatusMessage" model="@Model.StatusMessage"></partial>
+
+<table class="table">
+  <tr>
+    <th>User name</th>
+    <th>Role</th>
+    <th>Actions</th>
+  </tr>
+  @foreach (var user in Model.Users)
+  {
+    <tr>
+      <td>@user.UserName</td>
+      <td>@user.RoleNames</td>
+      <td>
+        <a class="btn btn-success btn-sm" asp-page="./SetPassword" asp-route-userId="@user.Id">Set password</a>
+        <a class="btn btn-success btn-sm" asp-page="./AddRole" asp-route-userId="@user.Id">Update role</a>
+      </td>
+    </tr>
+  }
+</table>
+
+@{
+    var pagingModel = new PagingModel() {
+        CurrentPage = @Model.CurrentPage,
+        CountPages = @Model.CountPages,
+        GenerateUrl = (int? page) => Url.Page("./Index", new { p = page })
+    };
+}
+<partial name="_Paging" model="@pagingModel" />
